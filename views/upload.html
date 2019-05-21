@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>DropzoneJS Uploader</title>
+    <title>Go-DropzoneJS Uploader</title>
 
     <!-- 1 -->
     <link href="/public/css/dropzone.css" type="text/css" rel="stylesheet" />
@@ -19,21 +19,17 @@
                 thisDropzone = this;
                 // 6
                 $.get('/uploads', function (data) {
-
                     if (data == null) {
                         return;
                     }
                     // 7
                     $.each(data, function (key, value) {
                         var mockFile = { name: value.name, size: value.size };
-
                         thisDropzone.emit("addedfile", mockFile);
                         thisDropzone.options.thumbnail.call(thisDropzone, mockFile, '/public/uploads/thumbnail_' + value.name);
-
                         // Make sure that there is no progress bar, etc...
                         thisDropzone.emit("complete", mockFile);
                     });
-
                 });
             }
         };
@@ -41,7 +37,6 @@
 </head>
 
 <body>
-
     <!-- 3 -->
     <form action="/upload" method="POST" class="dropzone" id="my-dropzone">
         <div class="fallback">
